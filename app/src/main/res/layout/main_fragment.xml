@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <import type="android.view.View" />
+        <variable
+            name="vm"
+            type="com.example.ioc.vm.IMainVM" />
+        <variable
+            name="model"
+            type="com.example.ioc.model.MainModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainFragment">
+
+
+        <EditText
+            android:id="@+id/textVal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={model.value}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textProp"
+            app:layout_constraintTop_toBottomOf="@+id/valueDown"
+            app:onKeyListener="@{model.onKeyListenerVal}" />
+
+        <EditText
+            android:id="@+id/textProp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@={model.prop}"
+            app:layout_constraintEnd_toStartOf="@+id/textVal"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/valueDown"
+            app:onKeyListener="@{model.onKeyListenerProp}" />
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{model.message}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.525"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button7" />
+
+        <Button
+            android:id="@+id/buttonUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.onClickUpProp()}"
+            android:text="upModel     "
+            app:layout_constraintEnd_toStartOf="@+id/valueDown"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/valueUp" />
+
+        <Button
+            android:id="@+id/buttonDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.onClickDownProp()}"
+            android:text="downModel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/valueDown"
+            app:layout_constraintTop_toBottomOf="@+id/valueUp" />
+
+        <Button
+            android:id="@+id/valueUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.onClickUpPair()}"
+            android:text="upPair      "
+            app:layout_constraintBottom_toTopOf="@+id/button5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/valueDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.onClickDownPair()}"
+            android:text="downPair "
+            app:layout_constraintEnd_toEndOf="@+id/valueUp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/valueUp"
+            app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="366dp"
+            app:constraint_referenced_ids="buttonUp,buttonDown"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/buttonDown"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonUp"
+            app:layout_constraintTop_toBottomOf="@+id/valueUp" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.onClickSend()}"
+            android:text="Send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/valueDown" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="0dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="-69dp" />
+
+        <!--    <LinearLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="50sp"-->
+        <!--        android:orientation="horizontal"-->
+        <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--        app:layout_constraintTop_toTopOf="parent">-->
+        <RadioGroup
+            android:id="@+id/optimizationRadio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/button7"
+            app:layout_constraintTop_toBottomOf="@+id/textProp">
+
+            <RadioButton
+                android:id="@+id/satelite4"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:text="DVBS2X-4"
+                android:checked="@={model.focus4Fmt}"
+                android:onClick="@{() -> vm.onClickFmt4()}"
+                tools:layout_editor_absoluteX="27dp"
+                tools:layout_editor_absoluteY="302dp" />
+
+            <RadioButton
+                android:id="@+id/satelite5"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:text="DVBS2X-5"
+                android:checked="@={model.focus5Fmt}"
+                android:onClick="@{() -> vm.onClickFmt5()}"
+                tools:layout_editor_absoluteX="27dp"
+                tools:layout_editor_absoluteY="366dp" />
+
+            <RadioButton
+                android:id="@+id/FPGA"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:text="FPGA"
+                android:checked="@={model.focusFpga}"
+                android:onClick="@{() -> vm.onClickFpga()}"
+                tools:layout_editor_absoluteX="27dp"
+                tools:layout_editor_absoluteY="236dp" />
+        </RadioGroup>
+        <!--    </LinearLayout>-->
+
+        <Button
+            android:id="@+id/sync"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.onClickSync()}"
+            android:text="Sync"
+            app:layout_constraintBottom_toTopOf="@+id/message"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button7" />
+        <!--    <androidx.constraintlayout.helper.widget.Layer-->
+        <!--        android:id="@+id/layer"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        app:constraint_referenced_ids="buttonUp,button5,valueUp,valueDown,buttonDown,message,textView,textView3" />-->
+
+
+        <!--    <androidx.constraintlayout.widget.Group-->
+        <!--        android:id="@+id/group2"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        app:constraint_referenced_ids="textView" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
